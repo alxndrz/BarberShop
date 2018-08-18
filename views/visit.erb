@@ -19,11 +19,11 @@
     <div class="form-group">
       <label>Ваш барбер: </label>
       <select name="master" class="form-control">
-        <option>Walter</option>
-        <option>Jessie</option>
-        <option>Gus</option>
-        <option>Lidia</option>
-        <option>Mike</option>
+        <option <%= @master == 'Walter' ? 'selected' : '' %>>Walter</option>
+        <option <%= @master == 'Jessie' ? 'selected' : '' %>>Jessie</option>
+        <option <%= @master == 'Gus' ? 'selected' : '' %>>Gus</option>
+        <option <%= @master == 'Lidia' ? 'selected' : '' %>>Lidia</option>
+        <option <%= @master == 'Mike' ? 'selected' : '' %>>Mike</option>
       </select>
     </div>
 
