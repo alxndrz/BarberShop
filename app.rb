@@ -11,9 +11,13 @@ require 'sqlite3'
 #Get запросы:
 #Инициализация 
 configure do
+
 	def get_db
-	return SQLite3::Database.new 'barbershop.db'
+	db = SQLite3::Database.new 'barbershop.db'
+	db.results_as_hash = true
+	return db
 	end
+
 	db = get_db
 	db.execute 'CREATE TABLE IF NOT EXISTS 
 		"Users" 
@@ -45,6 +49,7 @@ end
 get '/admin' do
 	erb :admin
 end
+
 
 #POST запросы:
 
