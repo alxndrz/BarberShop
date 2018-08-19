@@ -11,8 +11,11 @@ require 'sqlite3'
 #Get запросы:
 #Инициализация 
 configure do
-	@db = SQLite3::Database.new 'barbershop.db'
-	@db.execute 'CREATE TABLE IF NOT EXISTS 
+	def get_db
+	return SQLite3::Database.new 'barbershop.db'
+	end
+	db = get_db
+	db.execute 'CREATE TABLE IF NOT EXISTS 
 		"Users" 
 		(
 			"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -67,6 +70,18 @@ post '/visit' do
 		return erb :visit
 	end
 
+	db = get_db
+	db.execute 'insert into 
+		Users 
+		(
+			name, 
+			phone, 
+			datestamp, 
+			master, 
+			color
+		)
+		values (?, ?, ?, ?, ?)', [@username, @phone, @datetime, @master, @color]
+
 	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@master}, #{@color}"
 
 end
@@ -119,3 +134,4 @@ post '/admin' do
 	end
 
 end
+
