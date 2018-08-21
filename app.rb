@@ -1,23 +1,20 @@
 #encoding: utf-8
 
 #REQUIRE:
-
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
-
-#Get запросы:
-#Инициализация 
-configure do
-
-	def get_db
+#Методы:
+def get_db
 	db = SQLite3::Database.new 'barbershop.db'
 	db.results_as_hash = true
 	return db
-	end
+end
 
+#Инициализация 
+configure do
 	db = get_db
 	db.execute 'CREATE TABLE IF NOT EXISTS 
 		"Users" 
@@ -31,6 +28,7 @@ configure do
 		)'
 end
 
+#Get запросы:
 get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"
 end
@@ -50,9 +48,7 @@ get '/admin' do
 	erb :admin
 end
 
-
 #POST запросы:
-
 post '/visit' do
 
 	@username = params[:username]
