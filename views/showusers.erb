@@ -1,13 +1,28 @@
-<table class="table">
-
-  <% @results.each do |row| %>
+<table class="table table-striped">
+  <thead class="thead-dark">
     <tr>
-      <td><%= row['name'] %></td>
-      <td><%= row['phone'] %></td>
-      <td><%= row['datestamp'] %></td>
-      <td><%= row['master'] %></td>
-      <td><%= row['color'] %></td>
+      <th>ID</th>
+      <th>Имя</th>
+      <th>Телефон</th>
+      <th>Дата</th>
+      <th>Барбер</th>
+      <th>Цвет</th>
     </tr>
-  <% end %>
+  </thead>
+
+  <tbody>
+    <% @results.each do |row| %>
+      <tr>
+        <td><%= row['id'] %></td>
+        <td><%= row['name'] %></td>
+        <td><%= row['phone'] %></td>
+        <td><%= row['datestamp'] %></td>
+        <td><%= row['master'] %></td>
+        <td><%= row['color'] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+
 
 </table>
