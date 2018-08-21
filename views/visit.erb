@@ -29,14 +29,13 @@
 
     <div class="form-group">
       <label>Ваш барбер: </label>
-      <select name="master" class="form-control">
-        <option <%= @master == 'Walter' ? 'selected' : '' %>>Walter</option>
-        <option <%= @master == 'Jessie' ? 'selected' : '' %>>Jessie</option>
-        <option <%= @master == 'Gus' ? 'selected' : '' %>>Gus</option>
-        <option <%= @master == 'Lidia' ? 'selected' : '' %>>Lidia</option>
-        <option <%= @master == 'Mike' ? 'selected' : '' %>>Mike</option>
-      </select>
-    </div>
+            <select name="master" class="form-control">
+
+                <% @barbers.each do |item| %>
+                    <option <%= @master == item['name'] ? 'selected' : '' %> ><%= item['name'] %></option>
+                <% end %>
+                
+            </select>
 
     <div class="form-group">
       <label>В какие цвета хотите себя окрасить: </label>
