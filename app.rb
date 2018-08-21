@@ -48,6 +48,10 @@ get '/admin' do
 	erb :admin
 end
 
+get '/showusers' do
+	erb :showusers
+end
+
 #POST запросы:
 post '/visit' do
 
