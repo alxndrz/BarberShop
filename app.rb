@@ -65,10 +65,6 @@ post '/visit' do
 			:phone => 'Введите телефон',
 			:datetime => 'Введите дату', }
 
-	f = File.open "./public/users.txt", 'a'
-	f.write "Name: #{@username}. Phone: #{@phone}. Date and Time: #{@datetime}. Master: #{@master}. Color: #{@color}"
-	f.close
-
 	@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
 
 	if @error != ''
@@ -104,10 +100,6 @@ post '/contact' do
 	if @error != ''
 		return erb :contact
 	end
-
-	f = File.open "./public/message.txt", 'a'
-	f.write "Email: #{@email}. Message: #{@message}."
-	f.close
 
 	erb "Спасибо за отзыв."
 
