@@ -13,6 +13,20 @@ def get_db
 	return db
 end
 
+def is_barber_exists? db, name
+	db.execute('SELECT * FROM Barbers WHERE name=?', [name]).length > 0
+end
+
+def seed_db db, barbers
+
+	barbers.each do |barber|
+		if !is_barber_exists? db, barber
+			db.execute 'INSERT INTO Barbers (name) VALUES (?)', [barber]
+		end
+	end
+
+end
+
 #Инициализация 
 configure do
 	db = get_db
@@ -26,6 +40,15 @@ configure do
 			"master" TEXT, 
 			"color" TEXT
 		)'
+	db.execute 'CREATE TABLE IF NOT EXISTS 
+		"Barbers" 
+		(
+			"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+			"name" TEXT
+		)'
+
+		seed_db db, ['Walter', 'Jessie', 'Gus', 'Lidia', 'Mike']
+
 end
 
 #Get запросы:
@@ -126,8 +149,6 @@ post '/admin' do
 	end
 
 	if @login == 'admin' && @password == 'admin1123'
-
-	#код вывода записавшихся клиентов
 
 	else
 		@error = "Логин или пароль не верный"
